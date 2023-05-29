@@ -99,6 +99,9 @@ class GameScene: SKScene {
 
     override func update(_ currentTime: TimeInterval) {
             if countdownValue == 0{
+                if score > SharedVariables.high1{
+                    SharedVariables.high1 = score
+                }
                 if let view = self.view{
                     if let scene = SKScene(fileNamed: "Time_Trial_Game_Over"){
                         SharedVariables.score = Double(score)

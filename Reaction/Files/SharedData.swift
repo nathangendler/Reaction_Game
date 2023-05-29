@@ -9,6 +9,9 @@ import Foundation
 
 class SharedVariables {
     static var score = 400.0
+    static var high1 = 0
+    static var high2 = 0.0
+    
 //    var myVariable: Any?
 }
 

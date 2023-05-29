@@ -54,10 +54,10 @@ class Start: SKScene {
                         
                     }
                 }
-                if touchedNode.name == "2_player"
+                if touchedNode.name == "highScores"
                 {
                     if let view = self.view {
-                        if let scene = SKScene(fileNamed: "2_player") {
+                        if let scene = SKScene(fileNamed: "highScores") {
                             scene.scaleMode = .aspectFill
                             view.presentScene(scene)
                             

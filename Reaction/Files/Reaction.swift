@@ -19,22 +19,29 @@ class Reaction: SKScene {
     var countdownTimer: Timer?
     var countupTimer: Timer?
     var timerLabel: SKLabelNode!
-    var startTime: TimeInterval = -0.1
+    
     var isTimerRunning = false
-    var all: [Double] = []
+    var times: [Double] = []
     var elapsedTime = -0.1
-    var stop = false
-    var times = 1
+    var stop = 0
+
     var first = true
+    var startTime: TimeInterval = 0
+    var timerRunning = false
+    var a = 1
     
     override func didMove(to view: SKView) {
+        if let label = (self.childNode(withName: "score_label") as? SKLabelNode){
+            label.text = ("Tap anywhere to start")
+        }
+        
         print("before first touch")
         square.size = CGSize(width: 150, height: 150)
         square.position = CGPoint(x:0, y: 0)
         square.color = .red
         backgroundColor = .black
         addChild(square)
-        startCountdownTimer()
+
         timerLabel = SKLabelNode(text: "0.0")
         timerLabel.fontSize = 32
         timerLabel.fontColor = .black
@@ -50,104 +57,85 @@ class Reaction: SKScene {
         timerLabel.text = formattedTime
     }
     
-    func touchDown(atPoint pos : CGPoint){
-        
-    }
-    
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
-            return
-        }
-                
-        let touchLocation = touch.location(in: self)
-        
-        if first == true{
-            print("first touch detected")
-            first = false
-            
-            isTimerRunning = true
-            startTime = CACurrentMediaTime()
-                    
-            // Update the timer label
-            let updateAction = SKAction.run { [weak self] in
-                self?.updateTimerLabel()
-            }
-            let waitAction = SKAction.wait(forDuration: 0.1)
-            let sequenceAction = SKAction.sequence([updateAction, waitAction])
-            let repeatAction = SKAction.repeatForever(sequenceAction)
-            timerLabel.run(repeatAction)
-            stop = true
-        }
-        
-        if stop == true && square.contains(touchLocation) && square.color == .green{
-            isTimerRunning = false
-            all.append(elapsedTime)
-            print(all[0])
-            timerLabel.removeAllActions()
-            times += 1
-            if let label = (self.childNode(withName: "score_label") as? SKLabelNode){
-                label.text = ("Tap anywhere for attempt \(times) out of 5")
-                
-                print("thing")
-            }
-            
-        }
-        if stop == true && isTimerRunning == false{
-            
-        }
-        if stop == false{
-            countdownValue = Double.random(in: 2.4..<6)
-            stop = true
-            square.color = .red
-            
-            if !isTimerRunning {
-                // Start the timer
-                isTimerRunning = true
-                startTime = CACurrentMediaTime() + countdownValue
-                        
-                // Update the timer label
-                let updateAction = SKAction.run { [weak self] in
-                    self?.updateTimerLabel()
+        if let touch = touches.first {
+                    let location = touch.location(in: self)
+                    if !timerRunning {
+                        // Start the timer
+                        if let label = (self.childNode(withName: "score_label") as? SKLabelNode){
+                            label.text = ("Tap the square when green")
+                        }
+                        countdownValue = Double.random(in: 2.4..<6)
+                        startTime = CACurrentMediaTime() + countdownValue
+                        timerRunning = true
+                        updateTimerLabel()
+                    } else if timerRunning && square.contains(location) && elapsedTime >= 0{
+                        // Stop the timer
+                        a += 1
+                        if let label = (self.childNode(withName: "score_label") as? SKLabelNode){
+                            label.text = ("Tap anywhere for attempt \(a) out of 5")
+                        }
+                        times.append(elapsedTime)
+                        timerRunning = false
+
+                    } else if !timerRunning && square.contains(location) {
+                        // Reset the timer and start again
+                        if let label = (self.childNode(withName: "score_label") as? SKLabelNode){
+                            label.text = ("Tap the square when green")
+                        }
+                        countdownValue = Double.random(in: 2.4..<6)
+                        startTime = CACurrentMediaTime() + countdownValue
+                        timerRunning = true
+                        updateTimerLabel()
+                    }
                 }
-                let waitAction = SKAction.wait(forDuration: 0.1)
-                let sequenceAction = SKAction.sequence([updateAction, waitAction])
-                let repeatAction = SKAction.repeatForever(sequenceAction)
-                timerLabel.run(repeatAction)
-            } else {
-                // Stop the timer
-                isTimerRunning = false
-                timerLabel.removeAllActions()
-            }
-            
-        }
-        
     }
+    
     
     override func update(_ currentTime: TimeInterval) {
+        if elapsedTime >= 0{
+            timerLabel.fontColor = .white
+        }
+        else{
+            timerLabel.fontColor = .black
+        }
+        
+        if timerRunning {
+            updateTimerLabel()
+        }
+
+        if elapsedTime >= 0{
+            square.color = .green
+        }
+        else{
+            square.color = .red
+        }
         
         if countdownValue <= 0 {
             square.color = .green
             timerLabel.fontColor = .white
             yes = true
         }
-        if times == 5{
+        if a == 6{
             var x = 0.0
-            for i in all{
-                x += all[Int(i)]
-            }
+            print(times[0])
+            print(times[1])
+            print(times[2])
+            print(times[3])
+            print(times[4])
+          
+            x += times[0]
+            x += times[1]
+            x += times[2]
+            x += times[3]
+            x += times[4]
             print(x)
-            x = x/Double(times)
+            x = x/Double(a-1)
             print(x)
             if let view = self.view{
+                if x > SharedVariables.high2{
+                    SharedVariables.high2 = x
+                }
                 if let scene = SKScene(fileNamed: "Reaction_Game_Over"){
                     SharedVariables.score = x
                     scene.scaleMode = .aspectFill
@@ -155,33 +143,6 @@ class Reaction: SKScene {
                 }
             }
         }
-    }
-    
-
-    func startCountdownTimer() {
-
-        countdownTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
-       }
-       
-    @objc func updateCountdown() {
-        countdownValue -= 0.01
-        if countdownValue <= 0 {
-               endCountdown()
-                countdownValue = 0
-        }
-        if elapsedTime == 0.0{
-            stop = true
-            square.color = .green
-        }
-    }
-    
-    
-       
-    func endCountdown() {
-
-        countdownTimer?.invalidate()
-        countdownTimer = nil
-
     }
     
 }
