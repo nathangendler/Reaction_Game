@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-
+let customFont = UIFont(name: "Avenir-Medium", size: 24)
 class Start: SKScene {
 
     private var button : SKLabelNode?
@@ -35,7 +35,7 @@ class Start: SKScene {
                 let touchedNode = atPoint(location)
                 if touchedNode.name == "time_trial"{
                     if let view = self.view {
-                        if let scene = SKScene(fileNamed: "GameScene") {
+                        if let scene = SKScene(fileNamed: "Gamescene_Before") {
                             scene.scaleMode = .aspectFill
                             view.presentScene(scene)
                             

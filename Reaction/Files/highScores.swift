@@ -7,21 +7,25 @@ class highScores: SKScene {
     var mid: SKLabelNode!
     var bot: SKLabelNode!
     let backArrow = SKShapeNode()
+    let customFont = UIFont(name: "Avenir-Medium", size: 24)
     
     
     override func didMove(to view: SKView) {
         
         top = SKLabelNode(text: "Your High Scores")
+        top.fontName = customFont?.fontName
         top.fontSize = 32
         top.fontColor = .black
         top.position = CGPoint(x: frame.midX, y: frame.midY+200)
         addChild(top)
         mid = SKLabelNode(text: "Time Trials: \(SharedVariables.high1)")
+        mid.fontName = customFont?.fontName
         mid.fontSize = 32
         mid.fontColor = .black
         mid.position = CGPoint(x: frame.midX, y: frame.midY)
         addChild(mid)
         bot = SKLabelNode(text: "Reaction Time Average: \(SharedVariables.high2)")
+        bot.fontName = customFont?.fontName
         bot.fontSize = 32
         bot.fontColor = .black
         bot.position = CGPoint(x: frame.midX, y: frame.midY-200)

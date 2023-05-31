@@ -29,10 +29,15 @@ class Reaction: SKScene {
     var startTime: TimeInterval = 0
     var timerRunning = false
     var a = 1
+    let customFont = UIFont(name: "Avenir-Medium", size: 24)
+    
+    
     
     override func didMove(to view: SKView) {
         if let label = (self.childNode(withName: "score_label") as? SKLabelNode){
             label.text = ("Tap anywhere to start")
+            
+            label.fontName = customFont?.fontName
         }
         
         print("before first touch")
@@ -43,6 +48,7 @@ class Reaction: SKScene {
         addChild(square)
 
         timerLabel = SKLabelNode(text: "0.0")
+        timerLabel.fontName = customFont?.fontName
         timerLabel.fontSize = 32
         timerLabel.fontColor = .black
         timerLabel.position = CGPoint(x: frame.midX, y: frame.midY-200)
@@ -55,6 +61,7 @@ class Reaction: SKScene {
         elapsedTime = currentTime - startTime
         let formattedTime = String(format: "%.1f", elapsedTime)
         timerLabel.text = formattedTime
+        timerLabel.fontName = customFont?.fontName
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -132,12 +139,15 @@ class Reaction: SKScene {
             print(x)
             x = x/Double(a-1)
             print(x)
+            let gh = x.rounded(toPlaces: 4)
+            SharedVariables.score = gh
+            
             if let view = self.view{
-                if x > SharedVariables.high2{
-                    SharedVariables.high2 = x
+                if SharedVariables.score > SharedVariables.high2{
+                    SharedVariables.high2 = SharedVariables.score
                 }
                 if let scene = SKScene(fileNamed: "Reaction_Game_Over"){
-                    SharedVariables.score = x
+                    
                     scene.scaleMode = .aspectFill
                     view.presentScene(scene)
                 }

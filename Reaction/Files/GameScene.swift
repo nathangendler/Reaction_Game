@@ -16,10 +16,13 @@ class GameScene: SKScene {
     var timerLabel: SKLabelNode!
     var countdownValue = 20
     var countdownTimer: Timer?
+    let customFont = UIFont(name: "Avenir-Medium", size: 24)
     public var score = 0
     {
         didSet{
             scoreNode.text = "Current Score: \(score)"
+            scoreNode.fontName = customFont?.fontName
+            label.fontName = customFont?.fontName
         }
     }
     private let scoreNode : SKLabelNode = SKLabelNode(fontNamed: "Copperplate-Bold")
@@ -39,6 +42,7 @@ class GameScene: SKScene {
         score = 0
         
         timerLabel = SKLabelNode(fontNamed: "Helvetica")
+        timerLabel.fontName = customFont?.fontName
         timerLabel.fontSize = 48
         timerLabel.position = CGPoint(x: frame.midX, y: -520)
         addChild(timerLabel)
@@ -89,7 +93,7 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             if location.x >= (square.position.x-25) && location.x <= (square.position.x+25) && location.y >= (square.position.y-25) && location.y <= (square.position.y+25){
                 square.position.x = CGFloat(Int.random(in:(-250)...(250)))
-                square.position.y = CGFloat(Int.random(in:(-550)...(500)))
+                square.position.y = CGFloat(Int.random(in:(-500)...(450)))
                 score += 1
             }
             

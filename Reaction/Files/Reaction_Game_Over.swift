@@ -8,9 +8,8 @@
 import SpriteKit
 import GameplayKit
 
-
 class Reaction_Game_Over: SKScene {
-    
+    let customFont = UIFont(name: "Avenir-Medium", size: 24)
     private var score_label: SKLabelNode!
     private var tap_anywhere: SKLabelNode!
 
@@ -18,8 +17,9 @@ class Reaction_Game_Over: SKScene {
 
 //            self.score_label = (self.childNode(withName: "score_label") as? SKLabelNode)
         if let label = (self.childNode(withName: "score_label") as? SKLabelNode){
-
-            label.text = "\(SharedVariables.score)"
+            
+            label.text = "Your average time: \(SharedVariables.score)"
+            label.fontName = customFont?.fontName
         }
     }
     

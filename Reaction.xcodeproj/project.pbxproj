@@ -28,6 +28,8 @@
 		2B47CFB72A20B0E2002DA802 /* Reaction_Game_Over.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47CFB62A20B0E2002DA802 /* Reaction_Game_Over.swift */; };
 		2B47CFB92A2467BE002DA802 /* highScores.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2B47CFB82A2467BE002DA802 /* highScores.sks */; };
 		2B47CFBB2A246917002DA802 /* highScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47CFBA2A246917002DA802 /* highScores.swift */; };
+		2B47CFBD2A266BAE002DA802 /* Gamescene_Before.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2B47CFBC2A266BAE002DA802 /* Gamescene_Before.sks */; };
+		2B47CFBF2A266C03002DA802 /* GameScene_Before.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47CFBE2A266C03002DA802 /* GameScene_Before.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		2B47CFB62A20B0E2002DA802 /* Reaction_Game_Over.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction_Game_Over.swift; sourceTree = "<group>"; };
 		2B47CFB82A2467BE002DA802 /* highScores.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = highScores.sks; sourceTree = "<group>"; };
 		2B47CFBA2A246917002DA802 /* highScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = highScores.swift; sourceTree = "<group>"; };
+		2B47CFBC2A266BAE002DA802 /* Gamescene_Before.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Gamescene_Before.sks; sourceTree = "<group>"; };
+		2B47CFBE2A266C03002DA802 /* GameScene_Before.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene_Before.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 				2B47CF892A17D263002DA802 /* GameScene.sks */,
 				2B47CFAE2A1C0ADE002DA802 /* Reaction.sks */,
 				2B47CFB82A2467BE002DA802 /* highScores.sks */,
+				2B47CFBC2A266BAE002DA802 /* Gamescene_Before.sks */,
 				2B47CFB42A20AF09002DA802 /* Reaction_Game_Over.sks */,
 				2B47CF9E2A1B1EED002DA802 /* Start.sks */,
 				2B47CFB02A1C0C43002DA802 /* 2_player.sks */,
@@ -117,6 +122,7 @@
 				2B47CFA62A1B465E002DA802 /* Time_Trial_Game_Over.swift */,
 				2B47CFBA2A246917002DA802 /* highScores.swift */,
 				2B47CF8D2A17D263002DA802 /* GameScene.swift */,
+				2B47CFBE2A266C03002DA802 /* GameScene_Before.swift */,
 				2B47CFB22A1C10EE002DA802 /* Reaction.swift */,
 				2B47CFA82A1B4AB2002DA802 /* SharedData.swift */,
 				2B47CFB62A20B0E2002DA802 /* Reaction_Game_Over.swift */,
@@ -196,6 +202,7 @@
 				2B47CF982A17D263002DA802 /* LaunchScreen.storyboard in Resources */,
 				2B47CF8C2A17D263002DA802 /* Actions.sks in Resources */,
 				2B47CFB12A1C0C43002DA802 /* 2_player.sks in Resources */,
+				2B47CFBD2A266BAE002DA802 /* Gamescene_Before.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +218,7 @@
 				2B47CFB32A1C10EE002DA802 /* Reaction.swift in Sources */,
 				2B47CF8E2A17D263002DA802 /* GameScene.swift in Sources */,
 				2B47CFB72A20B0E2002DA802 /* Reaction_Game_Over.swift in Sources */,
+				2B47CFBF2A266C03002DA802 /* GameScene_Before.swift in Sources */,
 				2B47CFBB2A246917002DA802 /* highScores.swift in Sources */,
 				2B47CF902A17D263002DA802 /* GameViewController.swift in Sources */,
 				2B47CFA72A1B465E002DA802 /* Time_Trial_Game_Over.swift in Sources */,

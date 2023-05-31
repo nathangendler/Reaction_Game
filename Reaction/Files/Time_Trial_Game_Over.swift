@@ -19,7 +19,7 @@ class Time_Trial_Game_Over: SKScene {
 //            self.score_label = (self.childNode(withName: "score_label") as? SKLabelNode)
         if let label = (self.childNode(withName: "score_label") as? SKLabelNode){
 
-            label.text = "\(SharedVariables.score)"
+            label.text = "Your Score: \(SharedVariables.score)"
         }
     }
     
